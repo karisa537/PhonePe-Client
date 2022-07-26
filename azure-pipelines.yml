@@ -27,7 +27,7 @@ steps:
   displayName: Copy Files
   inputs:
     SourceFolder: $(system.defaultworkingdirectory)
-    Contents: '*.jar'
+    Contents: '**/*.jar'
     TargetFolder: $(build.artifactstagingdirectory)   
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
