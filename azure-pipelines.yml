@@ -12,12 +12,6 @@ pool:
 steps:
 # add these as the last steps
 # to deploy to your app service
-- task: CopyFiles@2
-  displayName: Copy Files
-  inputs:
-    SourceFolder: $(system.defaultworkingdirectory)
-    Contents: '*.jar'
-    TargetFolder: $(build.artifactstagingdirectory)   
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -29,6 +23,12 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
+- task: CopyFiles@2
+  displayName: Copy Files
+  inputs:
+    SourceFolder: $(system.defaultworkingdirectory)
+    Contents: '*.jar'
+    TargetFolder: $(build.artifactstagingdirectory)   
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
   inputs:
